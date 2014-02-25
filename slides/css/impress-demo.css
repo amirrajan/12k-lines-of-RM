@@ -524,6 +524,10 @@ a:focus {
     cursor: pointer;
 }
 
+#focus { display: none; }
+.impress-on-focus .step { opacity: 1; }
+
+.impress-on-focus2 .step { opacity: 1; }
 
 /*
     Now, when we have all the steps styled let's give users a hint how to navigate
