@@ -532,6 +532,8 @@ a:focus {
 #focus3 { display: none; }
 .impress-on-focus3 .step { opacity: 1; }
 
+.impress-on-objctoruby10 .step { opacity: 1; }
+
 .hint {
     /*
         We hide the hint until presentation is started and from browsers not supporting

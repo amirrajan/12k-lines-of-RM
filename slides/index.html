@@ -44,7 +44,8 @@
   </div>
 
   <div id="adrstory0--" class="step" data-x="900" data-y="-300" data-z="0" data-rotate="0" data-rotate-y="50">
-    <span style="font-size: 48px">How'd the heck did I get here?</span>
+    <span style="font-size: 48px; textalign: center">How'd the heck did I get here?</span>
+    <img src="howdigethere.gif" style="width: 100%" />
   </div>
 
   <div id="adrstory0" class="step" data-x="1500" data-y="-300" data-z="-300" data-rotate="0" data-rotate-y="90">
@@ -93,16 +94,11 @@ Please don't steal me.
   <div id="focus3" class="step" data-x="-25" data-y="200" data-z="-850" data-scale="2" data-rotate-x="0">
   </div>
 
-  <div id="gettingstarted" class="step" data-x="800" data-y="300" data-rotate-x="15">
-    <div style="font-size: 40px; text-align: center">
-      Ramping up on RubyMotion...
-    </div>
-  </div>
-
-  <div id="readingobjc" class="step" data-x="1500" data-y="300" data-rotate-x="15">
+  <div id="readingobjc" class="step" data-x="2000" data-y="400" data-rotate-x="15">
     <div style="font-size: 40px; text-align: center">
       First I had to mentally map Objective C to Ruby...
     </div>
+    <img src="objctorubystart.gif" style="width: 100%" />
   </div>
 
   <div id="objctoruby1" class="step md-font" data-x="1500" data-y="900" data-rotate-x="15">
@@ -115,7 +111,7 @@ NSLog([person sayHello]);
     </pre>
   </div>
 
-  <div id="objctoruby2" class="step md-font" data-x="1500" data-y="1400" data-rotate-x="15">
+  <div id="objctoruby2" class="step md-font" data-x="2400" data-y="900" data-rotate-x="15">
     Newing up a class, setting some properties, calling a method in Ruby<br/><br/>
     <pre>
 person = Person.alloc.init
@@ -125,7 +121,7 @@ NSLog(person.sayHello)
     </pre>
   </div>
 
-  <div id="objctoruby2-1" class="step md-font" data-x="1500" data-y="2300" data-rotate-x="15">
+  <div id="objctoruby2-1" class="step md-font" data-x="1350" data-y="1500" data-rotate-x="15">
     Person class definition in ObjC:<br/><br/>
     <pre>
 //Person.h
@@ -147,7 +143,7 @@ NSLog(person.sayHello)
     </pre>
   </div>
 
-  <div id="objctoruby3" class="step md-font" data-x="1500" data-y="2900" data-rotate-x="15">
+  <div id="objctoruby3" class="step md-font" data-x="2300" data-y="1350" data-rotate-x="15">
     Person class definition in Ruby:<br/><br/>
     <pre>
 class Person
@@ -160,7 +156,7 @@ end
     </pre>
   </div>
 
-  <div id="objctoruby4" class="step md-font" data-x="1500" data-y="3500" data-rotate-x="15">
+  <div id="objctoruby4" class="step md-font" data-x="1200" data-y="2100" data-rotate-x="15">
     Declaring and calling an Objective C method with 3 parameters:<br/><br/>
     <pre>
 - (void)setDobWithMonth:(NSInteger)month
@@ -173,7 +169,7 @@ end
     </pre>
   </div>
 
-  <div id="objctoruby5" class="step md-font" data-x="1500" data-y="4200" data-rotate-x="15">
+  <div id="objctoruby5" class="step md-font" data-x="2150" data-y="2100" data-rotate-x="15">
     Declaring and calling a Ruby method with 3 parameters:<br/><br/>
     <pre>
 def setDobWithMonth(month,
@@ -186,7 +182,7 @@ person.setDobWithMonth(1, withDay: 1, withYear: 2013)
     </pre>
   </div>
 
-  <div id="objctoruby6" class="step md-font" data-x="1500" data-y="4800" data-rotate-x="15">
+  <div id="objctoruby6" class="step md-font" data-x="1050" data-y="2700" data-rotate-x="15">
     Declaring and executing blocks in Objective C:<br/><br/>
     <pre>
 - (void)
@@ -202,7 +198,7 @@ success:(void (^)(RKMappingResult *mappingResult))success { }
     </pre>
   </div>
 
-  <div id="objctoruby7" class="step md-font" data-x="1500" data-y="5500" data-rotate-x="15">
+  <div id="objctoruby7" class="step md-font" data-x="2050" data-y="2700" data-rotate-x="15">
     Declaring and executing blocks in Ruby:<br/><br/>
     <pre>
 def post(objectToPost, toUrl: toUrl, success: success)
@@ -217,7 +213,7 @@ client post({ firstName: "Amir", lastName: "Rajan" },
     </pre>
   </div>
 
-  <div id="objctoruby8" class="step md-font" data-x="1500" data-y="6000" data-rotate-x="15">
+  <div id="objctoruby8" class="step md-font" data-x="900" data-y="3200" data-rotate-x="15">
     Finally, let's translate this code from a StackOverflow answer:<br/><br/>
     <pre>
 _label.layer.backgroundColor = [UIColor whiteColor].CGColor;
@@ -228,7 +224,7 @@ _label.layer.backgroundColor = [UIColor whiteColor].CGColor;
     </pre>
   </div>
 
-  <div id="objctoruby9" class="step md-font" data-x="1500" data-y="6400" data-rotate-x="15">
+  <div id="objctoruby9" class="step md-font" data-x="2000" data-y="3200" data-rotate-x="15">
     Bam:<br/><br/>
     <pre>
 @label.layer.backgroundColor = UIColor.whiteColor.CGColor
@@ -237,6 +233,11 @@ UIView.animateWithDuration(2.0, animations: lambda {
   @label.layer.backgroundColor = UIColor.greenColor.CGColor
 }, completion: nil)
     </pre>
+  </div>
+
+  <div id="objctoruby10" style="text-align: center" class="step md-font" data-x="3900" data-y="1800" data-scale="3" data-rotate-x="15">
+    Achievement Unlocked
+    <img src="objctoruby.gif" style="width: 100%" />
   </div>
 
   <div id="downloads" class="step" data-x="0" data-y="800">
