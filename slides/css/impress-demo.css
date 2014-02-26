@@ -184,7 +184,7 @@ a:focus {
 */
 .impress-enabled .step {
     margin: 0;
-    opacity: 0.3;
+    opacity: 0.15;
 
     -webkit-transition: opacity 1s;
     -moz-transition:    opacity 1s;
@@ -529,47 +529,8 @@ a:focus {
 
 .impress-on-focus2 .step { opacity: 1; }
 
-/*
-    Now, when we have all the steps styled let's give users a hint how to navigate
-    around the presentation.
-
-    The best way to do this would be to use JavaScript, show a delayed hint for a
-    first time users, then hide it and store a status in cookie or localStorage...
-
-    But I wanted to have some CSS fun and avoid additional scripting...
-
-    Let me explain it first, so maybe the transition magic will be more readable
-    when you read the code.
-
-    First of all I wanted the hint to appear only when user is idle for a while.
-    You can't detect the 'idle' state in CSS, but I delayed a appearing of the
-    hint by 5s using transition-delay.
-
-    You also can't detect in CSS if the user is a first-time visitor, so I had to
-    make an assumption that I'll only show the hint on the first step. And when
-    the step is changed hide the hint, because I can assume that user already
-    knows how to navigate.
-
-    To summarize it - hint is shown when the user is on the first step for longer
-    than 5 seconds.
-
-    The other problem I had was caused by the fact that I wanted the hint to fade
-    in and out. It can be easily achieved by transitioning the opacity property.
-    But that also meant that the hint was always on the screen, even if totally
-    transparent. It covered part of the screen and you couldn't correctly clicked
-    through it.
-    Unfortunately you cannot transition between display `block` and `none` in pure
-    CSS, so I needed a way to not only fade out the hint but also move it out of
-    the screen.
-
-    I solved this problem by positioning the hint below the bottom of the screen
-    with CSS transform and moving it up to show it. But I also didn't want this move
-    to be visible. I wanted the hint only to fade in and out visually, so I delayed
-    the fade in transition, so it starts when the hint is already in its correct
-    position on the screen.
-
-    I know, it sounds complicated ... maybe it would be easier with the code?
-*/
+#focus3 { display: none; }
+.impress-on-focus3 .step { opacity: 1; }
 
 .hint {
     /*
@@ -626,14 +587,7 @@ a:focus {
     transition:         opacity 1s,         transform 0.5s 1s;
 }
 
-/*
-    Now we 'enable' the hint when presentation is initialized ...
-*/
 .impress-enabled .hint { display: block }
-
-/*
-    ... and we will show it when the first step (with id 'bored') is active.
-*/
 .impress-on-bored .hint {
     /*
         We remove the transparency and position the hint in its default fixed
@@ -662,27 +616,6 @@ a:focus {
     transition:         opacity 1s 5s,         transform 0.5s 4.5s;
 }
 
-/*
-    And as the last thing there is a workaround for quite strange bug.
-    It happens a lot in Chrome. I don't remember if I've seen it in Firefox.
-
-    Sometimes the element positioned in 3D (especially when it's moved back
-    along Z axis) is not clickable, because it falls 'behind' the <body>
-    element.
-
-    To prevent this, I decided to make <body> non clickable by setting
-    pointer-events property to `none` value.
-    Value if this property is inherited, so to make everything else clickable
-    I bring it back on the #impress element.
-
-    If you want to know more about `pointer-events` here are some docs:
-    https://developer.mozilla.org/en/CSS/pointer-events
-
-    There is one very important thing to notice about this workaround - it makes
-    everything 'unclickable' except what's in #impress element.
-
-    So use it wisely ... or don't use at all.
-*/
 .impress-enabled          { pointer-events: none }
 .impress-enabled #impress { pointer-events: auto }
 
@@ -691,3 +624,6 @@ a:focus {
   border: solid 1px silver;
   padding: 3px;
 }
+
+.md-font { font-size: 30px; }
+pre { font-family: monospace; font-size: 25px; }

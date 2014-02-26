@@ -59,14 +59,14 @@
 
   <div id="adrstory4" class="step" data-x="1500" data-y="-300" data-z="-1800" data-rotate="0" data-rotate-y="90">
     <div style="font-size: 48px">Then saw this...</div>
-    <img src="hackernews.png" />
+    <img src="hackernews.png" style="width: 100%" />
   </div>
 
-  <div id="adrstory5" class="step" data-x="1500" data-y="-300" data-z="-2400" data-rotate="0" data-rotate-y="90">
+  <div id="adrstory5" class="step" data-x="1500" data-y="-300" data-z="-2800" data-rotate="0" data-rotate-y="90">
     <div style="font-size: 35px">
-        So like any <strike>normal person</strike> curious developer I viewed source:
+      So like any <strike>normal person</strike> curious developer I viewed source:
     </div>
-    <pre style="font-size: 35px">
+    <pre style="font-size: 30px">
 &lt;!--
 A Dark Room (v1.2)
 ==================
@@ -77,17 +77,166 @@ Please don't steal me.
     </pre>
   </div>
 
-  <div id="adrstory6" class="step" data-x="1500" data-y="-300" data-z="-3300" data-rotate="0" data-rotate-y="90">
+  <div id="adrstory6" class="step" data-x="1500" data-y="-300" data-z="-3800" data-rotate="0" data-rotate-y="90">
     <div style="font-size: 35px; text-align: center">
-        The game had an unexplainable charm to it so I asked Michael if I could port it:  
+        The game had an unexplainable charm to it... so I asked Michael if I could port it:  
     </div>
     <img src="emailthread.png" style="background-color: white; display: block; width: 100%" />
   </div>
 
-  <div id="focus2" class="step" data-x="930" data-y="45" data-z="-3315" data-rotate="0" data-rotate-y="90">
-    <div style="font-size: 40px; text-align: center">
-      Yay!!! Wait...<br/>My Objective C is pretty rusty.<br/>frankly.<br/>XCode goes against the grain of everything I value in my development workflow.
+  <div id="focus2" class="step" data-x="925" data-y="10" data-z="-3810" data-rotate="0" data-rotate-y="90" style="background-color: #F5F6F5; color: #656060; width: 1000px">
+    <div style="font-family: arial; font-size: 35px; text-align: center">
+      Yay!!! Wait...<br/>My Objective C is pretty rusty.<br/>Frankly.<br/>XCode goes against the grain of everything I value in my development workflow.
     </div>
+  </div>
+
+  <div id="focus3" class="step" data-x="-25" data-y="200" data-z="-850" data-scale="2" data-rotate-x="0">
+  </div>
+
+  <div id="gettingstarted" class="step" data-x="800" data-y="300" data-rotate-x="15">
+    <div style="font-size: 40px; text-align: center">
+      Ramping up on RubyMotion...
+    </div>
+  </div>
+
+  <div id="readingobjc" class="step" data-x="1500" data-y="300" data-rotate-x="15">
+    <div style="font-size: 40px; text-align: center">
+      First I had to mentally map Objective C to Ruby...
+    </div>
+  </div>
+
+  <div id="objctoruby1" class="step md-font" data-x="1500" data-y="900" data-rotate-x="15">
+    Newing up a class, setting some properties, calling a method in Objective C:<br/><br />
+    <pre>
+Person *person = [[Person alloc] init];
+person.firstName = @"Amir";
+person.lastName = @"Rajan";
+NSLog([person sayHello]);
+    </pre>
+  </div>
+
+  <div id="objctoruby2" class="step md-font" data-x="1500" data-y="1400" data-rotate-x="15">
+    Newing up a class, setting some properties, calling a method in Ruby<br/><br/>
+    <pre>
+person = Person.alloc.init
+person.firstName = "Amir"
+person.lastName = "Rajan"
+NSLog(person.sayHello)
+    </pre>
+  </div>
+
+  <div id="objctoruby2-1" class="step md-font" data-x="1500" data-y="2300" data-rotate-x="15">
+    Person class definition in ObjC:<br/><br/>
+    <pre>
+//Person.h
+@interface Person : NSObject
+@property NSString *firstName;
+@property NSString *lastName;
+- (NSString*)sayHello;
+@end
+
+//Person.m
+#import "Person.h"
+@implementation Person
+- (NSString*)sayHello {
+  return [NSString stringWithFormat:@"Hello, %@ %@.",
+                                    _firstName,
+                                    _lastName];
+}
+@end
+    </pre>
+  </div>
+
+  <div id="objctoruby3" class="step md-font" data-x="1500" data-y="2900" data-rotate-x="15">
+    Person class definition in Ruby:<br/><br/>
+    <pre>
+class Person
+  attr_accessor :firstName, :lastName
+
+  def sayHello
+    "Hello, #{@firstName} @{lastName}"
+  end
+end
+    </pre>
+  </div>
+
+  <div id="objctoruby4" class="step md-font" data-x="1500" data-y="3500" data-rotate-x="15">
+    Declaring and calling an Objective C method with 3 parameters:<br/><br/>
+    <pre>
+- (void)setDobWithMonth:(NSInteger)month
+                withDay:(NSInteger)day
+               withYear:(NSInteger)year {
+
+}
+
+[person setDobWithMonth:1 withDay:1 withYear:2013];
+    </pre>
+  </div>
+
+  <div id="objctoruby5" class="step md-font" data-x="1500" data-y="4200" data-rotate-x="15">
+    Declaring and calling a Ruby method with 3 parameters:<br/><br/>
+    <pre>
+def setDobWithMonth(month,
+  withDay: day,
+  withYear: year)
+
+end
+
+person.setDobWithMonth(1, withDay: 1, withYear: 2013)
+    </pre>
+  </div>
+
+  <div id="objctoruby6" class="step md-font" data-x="1500" data-y="4800" data-rotate-x="15">
+    Declaring and executing blocks in Objective C:<br/><br/>
+    <pre>
+- (void)
+   post:(NSDictionary *)objectToPost
+  toUrl:(NSString *)toUrl
+success:(void (^)(RKMappingResult *mappingResult))success { }
+
+[client post: @{ firstName: @"Amir", lastName: @"Rajan" }
+       toUrl: @"http://localhost/people"
+     success:^(RKMappingResult *result) {
+       //callback code here
+     }];
+    </pre>
+  </div>
+
+  <div id="objctoruby7" class="step md-font" data-x="1500" data-y="5500" data-rotate-x="15">
+    Declaring and executing blocks in Ruby:<br/><br/>
+    <pre>
+def post(objectToPost, toUrl: toUrl, success: success)
+
+end
+
+client post({ firstName: "Amir", lastName: "Rajan" },
+  toUrl: "http://localhost/people",
+  success: lambda { |result|
+    #callback code here
+  })
+    </pre>
+  </div>
+
+  <div id="objctoruby8" class="step md-font" data-x="1500" data-y="6000" data-rotate-x="15">
+    Finally, let's translate this code from a StackOverflow answer:<br/><br/>
+    <pre>
+_label.layer.backgroundColor = [UIColor whiteColor].CGColor;
+
+[UIView animateWithDuration:2.0 animations:^{
+  _label.layer.backgroundColor = [UIColor greenColor].CGColor;
+} completion:NULL];
+    </pre>
+  </div>
+
+  <div id="objctoruby9" class="step md-font" data-x="1500" data-y="6400" data-rotate-x="15">
+    Bam:<br/><br/>
+    <pre>
+@label.layer.backgroundColor = UIColor.whiteColor.CGColor
+
+UIView.animateWithDuration(2.0, animations: lambda {
+  @label.layer.backgroundColor = UIColor.greenColor.CGColor
+}, completion: nil)
+    </pre>
   </div>
 
   <div id="downloads" class="step" data-x="0" data-y="800">
