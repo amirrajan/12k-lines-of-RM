@@ -122,7 +122,7 @@ NSLog(person.sayHello)
   </div>
 
   <div id="objctoruby2-1" class="step md-font" data-x="1350" data-y="1500" data-rotate-x="15">
-    Person class definition in ObjC:<br/><br/>
+    Person class definition in Objective C:<br/><br/>
     <pre>
 //Person.h
 @interface Person : NSObject
@@ -238,6 +238,53 @@ UIView.animateWithDuration(2.0, animations: lambda {
   <div id="objctoruby10" style="text-align: center" class="step md-font" data-x="3900" data-y="1800" data-scale="3" data-rotate-x="15">
     Achievement Unlocked
     <img src="objctoruby.gif" style="width: 100%" />
+  </div>
+
+  <div id="leverageruby" style="text-align: center" class="step md-font" data-x="1500" data-y="3500" data-rotate-x="15">
+    <div style="textalign: center">With Objective C to Ruby mentally mapped.<br/>I started to take advantage of Ruby (and RubyMotion's dev workflow)...</div>
+  </div>
+
+  <div id="leverageruby1" class="step md-font" data-x="1500" data-y="3900" data-rotate-x="15">
+    <div style="textalign: center">Opening an existing classes:<br/><br/></div>
+    <pre>
+class UIView
+  def animate duration = 0.5, &amp;block
+    UIView.beginAnimations(nil, context:nil)
+    UIView.setAnimationDuration(duration)
+    instance_eval &amp;block
+    UIView.commitAnimations
+  end
+end
+
+label.setAlpha 0
+label.animate 1 { label.setAlpha 1 }
+    </pre>
+  </div>
+
+  <div id="leverageruby2" class="step" data-x="2300" data-y="4000" data-rotate-x="15">
+    <div style="textalign: center">Using Objective C Categories:<br/><br/></div>
+    <pre style="font-size: 20px">
+@interface UIView (UIViewExtensions)
+- (void)animate:(double)duration block:(void (^)(void))block;
+- (void)animate:(void (^)(void))block;
+@end
+
+@implementation UIView (UIViewExtensions)
+- (void)animate:(void (^)(void))block {
+  [self animate:0.5 block:block];
+}
+
+- (void)animate:(double)duration block:(void (^)(void))block {
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:duration];
+  block();
+  [UIView commitAnimations];
+}
+@end
+
+[label setAlpha:0];
+[label animate:1 block:^{ [label setAlpha:1]; }];
+    </pre>
   </div>
 
   <div id="downloads" class="step" data-x="0" data-y="800">
