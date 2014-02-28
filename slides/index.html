@@ -87,7 +87,7 @@ Please don't steal me.
 
   <div id="focus2" class="step" data-x="925" data-y="10" data-z="-3810" data-rotate="0" data-rotate-y="90" style="background-color: #F5F6F5; color: #656060; width: 1000px">
     <div style="font-family: arial; font-size: 35px; text-align: center">
-      Yay!!! Wait...<br/>My Objective C is pretty rusty.<br/>Frankly.<br/>XCode goes against the grain of everything I value in my development workflow.
+      Yay!!! Wait...<br/>XCode and Cocoa go against the grain of everything I value in development workflows, and apis.<br/>Bulky, complex, unintuitive.
     </div>
   </div>
 
@@ -150,7 +150,7 @@ class Person
   attr_accessor :firstName, :lastName
 
   def sayHello
-    "Hello, #{@firstName} @{lastName}"
+    "Hello, #{@firstName} #{@lastName}"
   end
 end
     </pre>
@@ -184,7 +184,7 @@ person.setDobWithMonth(1, withDay: 1, withYear: 2013)
 
   <div id="objctoruby6" class="step md-font" data-x="1050" data-y="2700" data-rotate-x="15">
     Declaring and executing blocks in Objective C:<br/><br/>
-    <pre style="font-size: 20px">
+    <pre style="font-size: 22px">
 - (void)
    post:(NSDictionary *)objectToPost
   toUrl:(NSString *)toUrl
@@ -215,7 +215,7 @@ client post({ firstName: "Amir", lastName: "Rajan" },
 
   <div id="objctoruby8" class="step md-font" data-x="900" data-y="3200" data-rotate-x="15">
     Finally, let's translate this code from a StackOverflow answer:<br/><br/>
-    <pre style="font-size: 20px">
+    <pre style="font-size: 22px">
 _label.layer.backgroundColor = [UIColor whiteColor].CGColor;
 
 [UIView animateWithDuration:2.0 animations:^{
@@ -404,11 +404,12 @@ SPEC_END
 
   <div id="leverageruby9" class="step" data-x="1500" data-y="6900" data-rotate-x="15">
     <div style="textalign: center">Views using Cocoa Apis:<br/><br/></div>
-    <pre style="font-size: 15px">class AppDelegate
+    <pre style="font-size: 16px">class AppDelegate
   def application(application, didFinishLaunchingWithOptions: launchOptions)
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     @window.makeKeyAndVisible
-    room_controller = RoomViewController.alloc.initWithGame(@game)
+    room_controller = RoomViewController.alloc.init
+    room_controller.game = @game
     navigation_controller =
       UINavigationController.alloc.initWithRootViewController(room_controller)
     @window.rootViewController = navigation_controller
@@ -417,22 +418,17 @@ SPEC_END
 end
 
 class RoomViewController &lt; UIViewController
-  def initWithGame game
-    @game = game
-    init
-  end
+  attr_accesor :game
 
   def viewDidLoad
     @button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @button.setTitle "light fire"
-    @button.addTarget(self,
-      action: :button_clicked,
+    @button.addTarget(self, action: :button_clicked,
       forControlEvents: UIControlEventTouchUpInside)
     view.addSubview @button
   end
 
   def button_clicked
-    #code here
   end
 end
     </pre>
@@ -440,7 +436,7 @@ end
 
   <div id="leverageruby10" class="step" data-x="2500" data-y="6900" data-rotate-x="15">
     <div style="textalign: center">Views using ProMotion and BubbleWrap :<br/><br/></div>
-    <pre style="font-size: 18px">class AppDelegate &lt; PM::Delegate
+    <pre style="font-size: 20px">class AppDelegate &lt; PM::Delegate
   def on_load(app, options)
     open RoomScreen.new(nav_bar: true, game: @game)
   end
@@ -452,12 +448,34 @@ class RoomScreen &lt; PM::Screen
   def on_load
     @button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     add(@button, { text: "light fire" })
-    @button.when(UIControlEventTouchUpInside) do
-      #code here
-    end
+    @button.when(UIControlEventTouchUpInside) {  }
   end
 end
     </pre>
+  </div>
+
+  <div id="leverageruby11" class="step md-font" data-x="1500" data-y="7500" data-rotate-x="15">
+    Other nice things:<br/><br/>
+    <ul>
+      <li>Out of the box rake tasks for build, test and packaging.</li>
+      <li>Bundler integration.</li>
+      <li>Use Objective C libraries via CocoaPods.</li>
+      <li>Good OSS ecosystem: rubymotion-wrappers.com</li>
+    </ul>
+    <br/>
+    <div>
+      For what it's worth. With enough time and effort. You can get Objective C and Cocoa to work as nice as Ruby and RubyMotion...
+    </div>
+  </div>
+
+  <div id="leverageruby12" class="step md-font" data-x="2500" data-y="7500" data-rotate-x="15">
+    But you might feel like this afterwards:<br/><br/>
+    <img src="notfun.gif" style="width: 100%" />
+  </div>
+
+  <div id="leverageruby13" class="step md-font" data-x="3500" data-y="7500" data-rotate-x="15">
+    I'd rather leverage RM's ecosystem, get my app done, and go get a shawarma:<br/><br/>
+    <img src="gtd.gif" style="width: 100%" />
   </div>
 
   <div id="graphoverview" class="step" data-x="0" data-y="1150" data-z="300">
