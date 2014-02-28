@@ -535,10 +535,45 @@ a:focus {
 .impress-on-objctoruby10 .step { opacity: 1; }
 
 #graphoverview { display: none; }
-.impress-on-graphoverview .step { opacity: 1; }
+.impress-on-graphoverview .step {
+  opacity: 1;
+}
+
+#graphoverview2 { display: none; }
+.impress-on-graphoverview2 .step {
+  opacity: 1;
+}
+
+.impress-on-graphoverview .data-point {
+  display: none;
+}
 
 #focusappstore { display: none; }
-.impress-on-focusappstore .step { opacity: 1; }
+.impress-on-focusappstore .step {
+  opacity: 1;
+}
+.impress-on-focusappstore .data-point {
+  display: none;
+}
+
+.impress-on-downloads .data-point {
+  display: none;
+}
+
+#downloads1 { display: none; }
+.impress-on-downloads1 .step { opacity: 1; }
+#downloads2 { display: none; }
+.impress-on-downloads2 .step { opacity: 1; }
+#downloads3 { display: none; }
+.impress-on-downloads3 .step { opacity: 1; }
+#downloads4 { display: none; }
+.impress-on-downloads4 .step { opacity: 1; }
+#downloads5 { display: none; }
+.impress-on-downloads5 .step { opacity: 1; }
+#downloads6 { display: none; }
+.impress-on-downloads6 .step { opacity: 1; }
+.impress-on-revenue .step { opacity: 1; }
+.impress-on-rankings .step { opacity: 1; }
 
 .hint {
     /*
@@ -626,6 +661,13 @@ a:focus {
 
 .impress-enabled          { pointer-events: none }
 .impress-enabled #impress { pointer-events: auto }
+
+.data-point {
+  border: solid 1px silver;
+  border-radius: 15px;
+  width: 100px;
+  padding: 3px;
+  font-size: 15px; position: absolute; text-align: center; background-color: #f9f9f9; }
 
 #logo {
   border-radius: 25px;
