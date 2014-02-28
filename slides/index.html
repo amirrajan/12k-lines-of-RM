@@ -184,13 +184,13 @@ person.setDobWithMonth(1, withDay: 1, withYear: 2013)
 
   <div id="objctoruby6" class="step md-font" data-x="1050" data-y="2700" data-rotate-x="15">
     Declaring and executing blocks in Objective C:<br/><br/>
-    <pre>
+    <pre style="font-size: 20px">
 - (void)
    post:(NSDictionary *)objectToPost
   toUrl:(NSString *)toUrl
 success:(void (^)(RKMappingResult *mappingResult))success { }
 
-[client post: @{ firstName: @"Amir", lastName: @"Rajan" }
+[client post: @{ @"firstName": @"Amir", @"lastName": @"Rajan" }
        toUrl: @"http://localhost/people"
      success:^(RKMappingResult *result) {
        //callback code here
@@ -215,7 +215,7 @@ client post({ firstName: "Amir", lastName: "Rajan" },
 
   <div id="objctoruby8" class="step md-font" data-x="900" data-y="3200" data-rotate-x="15">
     Finally, let's translate this code from a StackOverflow answer:<br/><br/>
-    <pre>
+    <pre style="font-size: 20px">
 _label.layer.backgroundColor = [UIColor whiteColor].CGColor;
 
 [UIView animateWithDuration:2.0 animations:^{
@@ -245,7 +245,7 @@ UIView.animateWithDuration(2.0, animations: lambda {
   </div>
 
   <div id="leverageruby1" class="step md-font" data-x="1500" data-y="3900" data-rotate-x="15">
-    <div style="textalign: center">Opening an existing classes:<br/><br/></div>
+    <div style="textalign: center">Opening an existing class:<br/><br/></div>
     <pre>
 class UIView
   def animate duration = 0.5, &amp;block
@@ -284,6 +284,169 @@ label.animate 1 { label.setAlpha 1 }
 
 [label setAlpha:0];
 [label animate:1 block:^{ [label setAlpha:1]; }];
+    </pre>
+  </div>
+
+  <div id="leverageruby3" class="step md-font" data-x="1500" data-y="4800" data-rotate-x="15">
+    <div style="textalign: center">Class macros:<br/><br/></div>
+      <pre>
+class SnarlingBeastEvent &lt; EncounterEvent
+  title "a snarling beast"
+  text "a snarling beast leaps out of the underbrush." 
+  damage 1
+
+  def loot
+    { 
+      fur: { min: 0.7, max: 0.3, chance: 1.0 }
+    }
+  end
+end
+    </pre>
+  </div>
+
+  <div id="leverageruby4" class="step md-font" data-x="1500" data-y="5400" data-rotate-x="15">
+    <div style="textalign: center">Class macros:<br/><br/></div>
+    <pre>
+class EncounterEvent
+  def self.title title
+    define_method("title") { title }
+  end
+
+  def self.text text
+    define_method("text") { text }
+  end
+
+  def self.health health
+    define_method("health") { health }
+  end
+end
+    </pre>
+  </div>
+
+  <div id="leverageruby5" class="step" data-x="2500" data-y="4800" data-rotate-x="15">
+    <div style="textalign: center">Class methods:<br/><br/></div>
+      <pre style="font-size: 20px">@interface SnarlingBeastEvent : EncounterEvent
++ (id)initNew;
+- (NSDictionary *)loot;
+@end
+
+@implementation SnarlingBeastEvent
++ (id)initNew {
+  return [super initWithAttributes: @{
+    @"health": [[NSNumber alloc]initWithInt: 1],
+    @"title": @"a snarling beast",
+    @"text": @"a snarling beast leaps out of the underbrush."
+  }];
+}
+  
+- (NSDictionary *)loot {
+  return @{
+    @"fur": @{
+      @"min": [[NSNumber alloc]initWithDouble:0.7],
+      @"max": [[NSNumber alloc]initWithDouble:0.3],
+      @"chance": [[NSNumber alloc]initWithDouble:1.7]
+    }
+  };
+}
+@end</pre>
+    </div>
+  
+  <div id="leverageruby6" class="step md-font" data-x="2500" data-y="5600" data-rotate-x="15">
+    <div style="textalign: center">Class methods:<br/><br/></div>
+      <pre>
+@interface EncounterEvent : NSObject
+@property NSString *title;
+@property NSString *text;
+@property NSInteger health;
++ (id)initWithAttributes:(NSDictionary *)attributes;
+@end
+
+@implementation EncounterEvent
++ (id)initWithAttributes:(NSDictionary *)attributes {
+  EncounterEvent *e = [[EncounterEvent alloc] init];
+  e.title = [attributes valueForKey:@"title"];
+  e.text = [attributes valueForKey:@"text"];
+  NSNumber *num = [attributes valueForKey:@"health"];
+  e.health = [num integerValue];
+  return e;
+}
+@end
+      </pre>
+  </div>
+
+  <div id="leverageruby7" class="step md-font" data-x="1500" data-y="6300" data-rotate-x="15">
+    <div style="textalign: center">Testing with MacBacon:<br/><br/></div>
+    <pre>
+describe "population" do
+  before do
+  end
+
+  it "kills population (except for one dude)" do
+  end
+end
+      </pre>
+  </div>
+  
+  <div id="leverageruby8" class="step md-font" data-x="2500" data-y="6300" data-rotate-x="15">
+    <div style="textalign: center">Testing with Cedar:<br/><br/></div>
+      <pre>
+SPEC_BEGIN(PopulationSpec)
+describe(@"population", ^{
+  before(^{
+  });
+
+  it(@"kills population (except for one dude)", ^{
+  });
+}
+SPEC_END
+      </pre>
+  </div>
+
+  <div id="leverageruby9" class="step md-font" data-x="1500" data-y="6900" data-rotate-x="15">
+    <div style="textalign: center">Views using iOS's UIViewControllers:<br/><br/></div>
+    <pre style="font-size: 20px">
+class AppDelegate
+  def application(application, didFinishLaunchingWithOptions: launchOptions)
+    @game = Game.new
+    @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    @window.makeKeyAndVisible
+    room_controller = RoomViewController.alloc.initWithGame(@game)
+    navigation_controller =
+      UINavigationController.
+      alloc.
+      initWithRootViewController(room_controller)
+    @window.rootViewController = navigation_controller
+    true
+  end
+
+class RoomViewController &lt; UIViewController
+  def initWithGame game
+    @game = game
+    self.setTitle game.room.title
+    init
+  end
+end
+    </pre>
+  </div>
+
+  <div id="leverageruby10" class="step md-font" data-x="2500" data-y="6900" data-rotate-x="15">
+    <div style="textalign: center">Views using ProMotion Screens:<br/><br/></div>
+
+    <pre style="font-size: 20px">
+class AppDelegate &lt; PM::Delegate
+  def on_load(app, options)
+    @game = Game.new
+    open RoomScreen.new(nav_bar: true, game: @game)
+  end
+end
+
+class RoomScreen &lt; PM::Screen
+  attr_accessor :game
+
+  def on_appear
+    self.title = game.room.title
+  end
+end
     </pre>
   </div>
 
