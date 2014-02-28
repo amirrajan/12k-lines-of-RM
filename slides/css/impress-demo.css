@@ -534,6 +534,9 @@ a:focus {
 
 .impress-on-objctoruby10 .step { opacity: 1; }
 
+#graphoverview { display: none; }
+.impress-on-graphoverview .step { opacity: 1; }
+
 .hint {
     /*
         We hide the hint until presentation is started and from browsers not supporting

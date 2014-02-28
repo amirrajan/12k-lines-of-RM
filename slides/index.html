@@ -402,40 +402,46 @@ SPEC_END
       </pre>
   </div>
 
-  <div id="leverageruby9" class="step md-font" data-x="1500" data-y="6900" data-rotate-x="15">
-    <div style="textalign: center">Views using iOS's UIViewControllers:<br/><br/></div>
-    <pre style="font-size: 20px">
-class AppDelegate
+  <div id="leverageruby9" class="step" data-x="1500" data-y="6900" data-rotate-x="15">
+    <div style="textalign: center">Views using Cocoa Apis:<br/><br/></div>
+    <pre style="font-size: 15px">class AppDelegate
   def application(application, didFinishLaunchingWithOptions: launchOptions)
-    @game = Game.new
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     @window.makeKeyAndVisible
     room_controller = RoomViewController.alloc.initWithGame(@game)
     navigation_controller =
-      UINavigationController.
-      alloc.
-      initWithRootViewController(room_controller)
+      UINavigationController.alloc.initWithRootViewController(room_controller)
     @window.rootViewController = navigation_controller
     true
   end
+end
 
 class RoomViewController &lt; UIViewController
   def initWithGame game
     @game = game
-    self.setTitle game.room.title
     init
+  end
+
+  def viewDidLoad
+    @button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @button.setTitle "light fire"
+    @button.addTarget(self,
+      action: :button_clicked,
+      forControlEvents: UIControlEventTouchUpInside)
+    view.addSubview @button
+  end
+
+  def button_clicked
+    #code here
   end
 end
     </pre>
   </div>
 
-  <div id="leverageruby10" class="step md-font" data-x="2500" data-y="6900" data-rotate-x="15">
-    <div style="textalign: center">Views using ProMotion Screens:<br/><br/></div>
-
-    <pre style="font-size: 20px">
-class AppDelegate &lt; PM::Delegate
+  <div id="leverageruby10" class="step" data-x="2500" data-y="6900" data-rotate-x="15">
+    <div style="textalign: center">Views using ProMotion and BubbleWrap :<br/><br/></div>
+    <pre style="font-size: 18px">class AppDelegate &lt; PM::Delegate
   def on_load(app, options)
-    @game = Game.new
     open RoomScreen.new(nav_bar: true, game: @game)
   end
 end
@@ -443,11 +449,18 @@ end
 class RoomScreen &lt; PM::Screen
   attr_accessor :game
 
-  def on_appear
-    self.title = game.room.title
+  def on_load
+    @button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    add(@button, { text: "light fire" })
+    @button.when(UIControlEventTouchUpInside) do
+      #code here
+    end
   end
 end
     </pre>
+  </div>
+
+  <div id="graphoverview" class="step" data-x="0" data-y="1150" data-z="300">
   </div>
 
   <div id="downloads" class="step" data-x="0" data-y="800">
@@ -456,6 +469,10 @@ end
 
   <div id="revenue" class="step" data-x="0" data-y="1100">
     <img src="revenue.png" />
+  </div>
+
+  <div id="rankings" class="step" data-x="0" data-y="1450">
+    <img src="rankings.png" />
   </div>
 
   <!-- <div id="useitagain" class="step" data-x="500" data-y="-100">
