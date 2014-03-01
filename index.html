@@ -402,14 +402,19 @@ SPEC_END
       </pre>
   </div>
 
+  <div id="leverageruby9image" class="step" data-x="1000" data-y="6900" data-rotate-x="15">
+    <div style="font-size: 50px;">Build this</div>
+    <img src="simpleview.png" style="height: 600px" />
+    <div style="font-size: 50px">with ...</div>
+  </div>
+
   <div id="leverageruby9" class="step" data-x="1500" data-y="6900" data-rotate-x="15">
     <div style="textalign: center">Views using Cocoa Apis:<br/><br/></div>
     <pre style="font-size: 16px">class AppDelegate
-  def application(application, didFinishLaunchingWithOptions: launchOptions)
+  def application(application, didFinishLaunchingWithOptions:launchOptions)
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     @window.makeKeyAndVisible
     room_controller = RoomViewController.alloc.init
-    room_controller.game = @game
     navigation_controller =
       UINavigationController.alloc.initWithRootViewController(room_controller)
     @window.rootViewController = navigation_controller
@@ -418,11 +423,12 @@ SPEC_END
 end
 
 class RoomViewController &lt; UIViewController
-  attr_accesor :game
-
   def viewDidLoad
+    setTitle "a dark room"
+    view.backgroundColor = UIColor.whiteColor
     @button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @button.setTitle "light fire"
+    @button.setTitle "light fire", forState: UIControlStateNormal 
+    @button.frame = CGRectMake(0, 100, 320, 40)
     @button.addTarget(self, action: :button_clicked,
       forControlEvents: UIControlEventTouchUpInside)
     view.addSubview @button
@@ -435,19 +441,23 @@ end
   </div>
 
   <div id="leverageruby10" class="step" data-x="2500" data-y="6900" data-rotate-x="15">
-    <div style="textalign: center">Views using ProMotion and BubbleWrap :<br/><br/></div>
-    <pre style="font-size: 20px">class AppDelegate &lt; PM::Delegate
+    <div style="textalign: center">Views using <a href="https://github.com/clearsightstudio/ProMotion" target="_blank">ProMotion</a> and <a href="https://github.com/clearsightstudio/bubblewrap" target="_blank">BubbleWrap</a> :<br/><br/></div>
+    <pre style="font-size: 20px">
+class AppDelegate &lt; PM::Delegate
   def on_load(app, options)
     open RoomScreen.new(nav_bar: true, game: @game)
   end
 end
 
 class RoomScreen &lt; PM::Screen
-  attr_accessor :game
+  title "a dark room"
 
   def on_load
     @button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    add(@button, { text: "light fire" })
+    view.backgroundColor = UIColor.whiteColor
+    @button.setTitle "light fire", forState: UIControlStateNormal 
+    @button.frame = CGRectMake(0, 100, 320, 40)
+    add @button
     @button.when(UIControlEventTouchUpInside) {  }
   end
 end
@@ -460,7 +470,7 @@ end
       <li>Out of the box rake tasks for build, test, and packaging.</li>
       <li>Bundler integration.</li>
       <li>Use Objective C libraries via CocoaPods.</li>
-      <li>Good OSS ecosystem: rubymotion-wrappers.com</li>
+      <li>Good OSS ecosystem: <a href="http://rubymotion-wrappers.com" target="_blank">rubymotion-wrappers.com</a></li>
     </ul>
     <br/>
     <div>
