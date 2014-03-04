@@ -278,7 +278,7 @@ label.animate 1 { label.setAlpha 1 }
 }
 
 - (void)animate:(double)duration block:(void (^)(void))block {
-  [UIView beginAnimations:nil context:nil];
+  [UIView beginAnimations:NULL context:NULL];
   [UIView setAnimationDuration:duration];
   block();
   [UIView commitAnimations];
