@@ -300,7 +300,7 @@ class SnarlingBeastEvent &lt; EncounterEvent
 
   def loot
     { 
-      fur: { min: 0.7, max: 0.3, chance: 1.0 }
+      fur: { min: 7, max: 3, chance: 1.0 }
     }
   end
 end
@@ -345,8 +345,8 @@ end
 - (NSDictionary *)loot {
   return @{
     @"fur": @{
-      @"min": [[NSNumber alloc]initWithDouble:0.7],
-      @"max": [[NSNumber alloc]initWithDouble:0.3],
+      @"min": [[NSNumber alloc]initWithDouble:7.0],
+      @"max": [[NSNumber alloc]initWithDouble:3.0],
       @"chance": [[NSNumber alloc]initWithDouble:1.7]
     }
   };
