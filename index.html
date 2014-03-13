@@ -25,7 +25,8 @@
       <div>to iOS.</div>
       <div style="font-weight: bold; font-size: 48px">It took 12,000 (awesome) Lines of</div>
       <img src="rubymotion.png" style="height: 200px;" /><br />
-      <div style="font-size: 30px">A Dark Room ranks as one of the top 20 RPGs in the App Store!</div>
+      <div style="font-size: 30px">A Dark Room ranks as one of the top 100 RPGs in the App Store!</div>
+      <div id="exactrank"></div>
       <br/>
       <div style="font-size: 30px">And I have made <strike>millions</strike> <strike>thousands</strike> hundreds...</div>
       <br/>
@@ -567,5 +568,25 @@ if ("ontouchstart" in document.documentElement) {
 </script>
 <script src="js/impress.js"></script>
 <script>impress().init();</script>
+<script src="js/jquery.js"></script>
+<script>
+  $(function() {
+    $.getJSON('https://itunes.apple.com/us/rss/toppaidapplications/limit=100/genre=7014/json', function(data) {
+      var rank = "< 100 T_T";
+
+      for(var i = 0; i < data.feed.entry.length; i++) {
+        console.log(data.feed.entry[i].title.label);
+        if(data.feed.entry[i].title.label == "A Dark Room - Amirali Rajan") {
+          rank = "#" + i.toString();
+          break;
+        }
+      }
+
+      $("#exactrank").html("To be exact. It's currently ranked " + rank + ".");
+    });
+  });
+  
+//
+</script>
 </body>
 </html>
