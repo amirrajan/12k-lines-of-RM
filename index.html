@@ -572,7 +572,7 @@ if ("ontouchstart" in document.documentElement) {
 <script>
   $(function() {
     $.getJSON('https://itunes.apple.com/us/rss/toppaidapplications/limit=100/genre=7014/json', function(data) {
-      var rank = "< 100 T_T";
+      var rank = "";
 
       for(var i = 0; i < data.feed.entry.length; i++) {
         console.log(data.feed.entry[i].title.label);
@@ -582,7 +582,9 @@ if ("ontouchstart" in document.documentElement) {
         }
       }
 
-      $("#exactrank").html("To be exact. It's currently ranked " + rank + ".");
+      if(rank.length != 0) {
+        $("#exactrank").html("To be exact. It's currently ranked " + rank + ".");
+      }
     });
   });
   
